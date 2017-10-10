@@ -1,8 +1,8 @@
 ﻿Vorlesung Cloud Computing
 ==============================================================================
-Autor: Josef Adersberger (josef.adersberger@qaware.de, [@adersberger](https://twitter.com/adersberger))
+Autor: Simon Bäumler
 
-Aktuelle Vorlesung: Hochschule Rosenheim, Wintersemester 2016/17
+Aktuelle Vorlesung: Hochschule Bingen, Wintersemester 2017/2018
 
 Inhalte:
 
@@ -26,6 +26,8 @@ Für die Übungen notwendige Software:
 * git in der aktuellsten Version: https://git-scm.com/download/win. Optional: github Desktop (https://desktop.github.com). 
 * Vagrant (inklusive der benötigten VirtualBox Version) in der aktuellsten Version: https://www.vagrantup.com
 * Docker for Windows (https://docs.docker.com/docker-for-windows) oder Docker for Mac (https://docs.docker.com/docker-for-mac)
+* Minikube (https://github.com/kubernetes/minikube/releases)
+* Minishift (https://github.com/minishift/minishift/releases)
 
 
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons Lizenzvertrag" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">Cloud Computing Vorlesung</span> von <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">Josef Adersberger</span> ist lizenziert unter einer <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Namensnennung - Weitergabe unter gleichen Bedingungen 4.0 International Lizenz</a>.
