@@ -9,15 +9,16 @@ Inhalte:
 1. [Einführung](00-einfuehrung)
 2. [Kommunikationsprotokolle in der Cloud](01-kommunikation)
 3. [Programmiermodelle: Reactive Programming](02-programmiermodelle)
-4. [Virtualisierung](03-virtualisierung)
-5. [Provisionierung](04-provisionierung)
-6. [Infrastructure-as-a-Service](05-iaas)
-7. [Cluster-Scheduling](06-cluster-scheduling)
-8. [Big Data: Speicherung und Verarbeitung](09-big-data)
-9. [Orchestrierung von Anwendungen im Cluster](07-orchestrierung)
-10. [Cloud-fähige Softwarearchitekturen](08-cloud-architektur)
-11. [Plattform-as-a-Service (Teil 1)](10-paas) 
-12. [Plattform-as-a-Service (Teil 2)](10-paas) und [Prüfungsvorbereitung](11-zusammenfassung)
+4. Microservicearchitekturen
+5. [Virtualisierung](03-virtualisierung)
+6. [Provisionierung](04-provisionierung)
+7. [Infrastructure-as-a-Service](05-iaas)
+8. [Cluster-Scheduling](06-cluster-scheduling)
+9. [Big Data: Speicherung und Verarbeitung](09-big-data)
+10. [Orchestrierung von Anwendungen im Cluster](07-orchestrierung)
+11. [Cloud-fähige Softwarearchitekturen](08-cloud-architektur)
+12. [Plattform-as-a-Service (Teil 1)](10-paas) 
+13. [Plattform-as-a-Service (Teil 2)](10-paas) und [Prüfungsvorbereitung](11-zusammenfassung)
 
 Für die Übungen notwendige Software:
 
