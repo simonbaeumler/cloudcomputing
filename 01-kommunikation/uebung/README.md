@@ -17,7 +17,7 @@ den Spring Boot Initializr. Rufen sie hierfür die folgende URL auf: https://sta
 
 4. Generieren und laden sie das Projekt und speichern sie es in ihrem Arbeitsbereich.
 
-5. Öffnen sie eine Console, gehen sie in das Projektverzeichnis und führen sie folgendes Kommand aus: `mvnv install`
+5. Öffnen sie eine Console, gehen sie in das Projektverzeichnis und führen sie folgendes Kommand aus: `mvnw install`
 
 
 ## Aufgaben
@@ -84,7 +84,7 @@ public class BookstoreAPI extends ResourceConfig {
 }
 ```
 
-(5) Kompilieren sie den Microservice und führen sie die Applikation aus: `mvnv install spring-boot:run`. Die Anwendung und das REST API sollte nun unter der folgenden URL erreichbar sein: `http://localhost:8080/api/books`.
+(5) Kompilieren sie den Microservice und führen sie die Applikation aus: `mvnw install spring-boot:run`. Die Anwendung und das REST API sollte nun unter der folgenden URL erreichbar sein: `http://localhost:8080/api/books`.
 
 ### Aufgabe 2: API Dokumentation
 
@@ -123,6 +123,11 @@ aufrufbar sein (abhängig von der Jersey Servlet URL).
         <artifactId>swagger-jersey2-jaxrs</artifactId>
         <version>1.5.13</version>
     </dependency>
+    <dependency>
+        <groupId>com.google.guava</groupId>
+        <artifactId>guava</artifactId>
+        <version>[20.0]</version>
+    </dependency>
 ```
 
 (2) Im nächsten Schritt müssen die Swagger REST Resource Klasse mit der JAX-RS Applikation registriert werden. Siehe https://github.com/swagger-api/swagger-core/wiki/Swagger-Core-Jersey-2.X-Project-Setup-1.5#using-a-custom-application-subclass für weitere Details.
@@ -158,7 +163,9 @@ aufrufbar sein (abhängig von der Jersey Servlet URL).
 (5) Starten Sie die Anwendung nun neu. Die API-Beschreibung durch Swagger sollte nun unter der URL http://localhost:8080/api/swagger.json zugänglich sein.
 
 (6) Laden sie nun die Swagger-UI von Github. Folgen sie den Anweisungen unter https://swagger.io/docs/swagger-tools/#swagger-ui-documentation-29
-Öffnen sie die UI und rufen sie die Swagger JSON URL auf. **Hinweis: sie benötigen einen JAX-RS CORS Filter um die Datei lokal aufrufen zu können.**
+Öffnen sie die UI und rufen sie die Swagger JSON URL auf. 
+
+**Hinweis: sie benötigen einen JAX-RS CORS Filter um die Datei lokal aufrufen zu können. Siehe z.B. https://spring.io/blog/2015/01/20/the-resource-server-angular-js-and-spring-security-part-iii#cors-negotiation (Kotlin Code!) **
 
 ### Kür: REST-API weiter ausbauen
 Bauen Sie die REST-Schnittstelle weiter aus und fügen sie Logik zum Anlegen, Aktualisieren und Löschen von Büchern hinzu:
