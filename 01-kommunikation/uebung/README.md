@@ -91,7 +91,7 @@ public class BookstoreAPI extends ResourceConfig {
 
 (1) Modifizieren sie ihre Anwendungslogik so, dass bei nicht vorhandenen Werten eine `BookNotFoundException` geworfen wird.
 
-(2) Erstellen sie einen `BookExceptionMapper` der von `ExceptionMapper<BookNotFoundException>` ableitet. Implimentieren sie die Methode `toResponse` so, dass bei einer `BookNotFoundException` ein HTTP-Code 404 ausgegeben wird. Geben sie zusätzlich eine aussagekräftige Fehlermeldung aus.
+(2) Implementieren sie das Interface `javax.ws.rs.ext.ExceptionMapper<BookNotFoundException>` in einer Klasse `BookExceptionMapper`. Implimentieren sie die Methode `toResponse` so, dass bei einer `BookNotFoundException` ein HTTP-Code 404 ausgegeben wird. Geben sie zusätzlich eine aussagekräftige Fehlermeldung aus.
 
 (3) Registrieren sie den `BookExceptionMapper` in der Klasse `BookstoreAPI`. 
 
