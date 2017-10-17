@@ -26,6 +26,8 @@ den Spring Boot Initializr. Rufen sie hierfür die folgende URL auf: https://sta
 
 Bei dieser Aufgabe geht es darum, eine einfache REST-Schnittstelle aufzubauen. Wir verwenden hierfür JAX-RS. Ein Getting Started finden sie hier: https://jersey.github.io/documentation/latest/getting-started.html
 
+#### Aufgabe 1.1: Rest Endpunkte erstellen
+
 (1) Entwerfen sie zunächst eine einfache Datenklasse um Bücher zu repräsentieren. Die Klasse soll mindestens die Felder `titel`, `isbn` und `author` enthalten. Zusätzlich soll die Klasse beim Deserialisieren unbekannte
 JSON Felder ignorieren.
 
@@ -79,12 +81,21 @@ public class BookstoreAPI extends ResourceConfig {
 
         register(JacksonFeature.class);
         register(BookResource.class);
-        register(BookExceptionMapper.class);
     }
 }
 ```
 
-(5) Kompilieren sie den Microservice und führen sie die Applikation aus: `mvnw install spring-boot:run`. Die Anwendung und das REST API sollte nun unter der folgenden URL erreichbar sein: `http://localhost:8080/api/books`.
+(5) Kompilieren sie den Microservice und führen sie die Applikation aus: `mvnw install spring-boot:run`. Die Anwendung und das REST API sollte nun unter der folgenden URL erreichbar sein: `http://localhost:8080/api/books`. Testen sie die Anwendung mit einem Browser, curl, etc.
+
+#### Aufgabe 1.2: Fehlerausgaben hinzufügen
+
+(1) Modifizieren sie ihre Anwendungslogik so, dass bei nicht vorhandenen Werten eine `BookNotFoundException` geworfen wird.
+
+(2) Erstellen sie einen `BookExceptionMapper` der von `ExceptionMapper<BookNotFoundException>` ableitet. Implimentieren sie die Methode `toResponse` so, dass bei einer `BookNotFoundException` ein HTTP-Code 404 ausgegeben wird. Geben sie zusätzlich eine aussagekräftige Fehlermeldung aus.
+
+(3) Registrieren sie den `BookExceptionMapper` in der Klasse `BookstoreAPI`. 
+
+(4) Kompilieren und starten sie die Anwendung erneut. Testen sie, ob die erwartete Fehlermeldung ausgegeben wird.
 
 ### Aufgabe 2: API Dokumentation
 
