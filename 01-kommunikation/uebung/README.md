@@ -163,7 +163,7 @@ aufrufbar sein (abhängig von der Jersey Servlet URL).
 (5) Starten Sie die Anwendung nun neu. Die API-Beschreibung durch Swagger sollte nun unter der URL http://localhost:8080/api/swagger.json zugänglich sein.
 
 (6) Laden sie nun die Swagger-UI von Github. Folgen sie den Anweisungen unter https://swagger.io/docs/swagger-tools/#swagger-ui-documentation-29
-Öffnen sie die UI und rufen sie die Swagger JSON URL auf. **Hinweis: sie benötigen einen JAX-RS CORS Filter um die Datei lokal aufrufen zu können. Siehe z.B. https://spring.io/blog/2015/01/20/the-resource-server-angular-js-and-spring-security-part-iii#cors-negotiation (Kotlin Code!) **
+Öffnen sie die UI und rufen sie die Swagger JSON URL auf. **Hinweis:** Sie benötigen einen JAX-RS CORS Filter um die Datei lokal aufrufen zu können. Siehe z.B. https://spring.io/blog/2015/01/20/the-resource-server-angular-js-and-spring-security-part-iii#cors-negotiation (Kotlin Code!)
 
 ### Kür: REST-API weiter ausbauen
 Bauen Sie die REST-Schnittstelle weiter aus und fügen sie Logik zum Anlegen, Aktualisieren und Löschen von Büchern hinzu:
