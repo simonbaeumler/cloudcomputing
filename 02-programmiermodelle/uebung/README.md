@@ -19,5 +19,16 @@ Machen sie ausgehend von den Main-Klassen einen Rundgang durch den Code und ersc
 ### Aufgabe 2: Das Aktorensystem lauffähig machen
 Füllen sie die Lücken im Aktor-System. Gehen sie dazu durch den Code und füllen sie alle Code-Stellen, an denen ein `TODO` als Kommentar hinterlegt ist. Führen sie das Aktorensystem aus (`MainWithActors`) und vergleichen sie die Laufzeit mit der sequenziellen Variante.
 
-### Aufgabe 3 (Kür): Das Aktorensystem in Dropwizard integrieren
-Falls sie schnell durch die vorherigen Übungen gekommen sind, so können sie noch einen Schritt weiter gehen: Den Code, der bisher nur aus den `Main`-Klassen angestoßen wird, in den Code der Übung zu REST auf Basis von Dropwizard integrieren. Sie müssen dazu das Aktorensystem bei der Initialisierung der Dropwizard-Applikation erzeugen und dann eine REST-Schnittstelle entwerfen, die einen Request an das Aktorensystem delegiert und die Ergebnisse nach Außen reicht.
+### Aufgabe 3 (Kür): Das Aktorensystem in SpringBoot integrieren
+Falls sie schnell durch die vorherigen Übungen gekommen sind, so können sie noch einen Schritt weiter gehen: Den Code, der bisher nur aus den `Main`-Klassen angestoßen wird, in den Code der vorherigen Übung zu REST auf Basis von SpringBoot integrieren. Sie müssen dazu das Aktorensystem bei der Initialisierung der Dropwizard-Applikation erzeugen und dann eine REST-Schnittstelle entwerfen, die einen Request an das erstellte Aktorensystem delegiert und die Ergebnisse nach Außen reicht.
+
+Sie können den in Aufgabe 2 erstellten Code einfach in den Spring-Boot Container integrieren, indem sie den Akka Code ins lokale Repository installieren (mvn install) und dann die folgende Dependency in der Maven pom.xml des Spring Boot Containers hinzufügen:
+
+```xml
+	<dependency>
+		<groupId>edu.qaware.cc</groupId>
+		<artifactId>akka</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</dependency>
+```
+
