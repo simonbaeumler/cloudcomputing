@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
 
 /**
- * The dummy application.
+ * The benutzer application.
  * <p>
  * Created by simon.baeumler on 11.10.2015.
  */

@@ -3,8 +3,8 @@
  */
 package de.qaware.edu.cc.benutzer;
 
-import de.qaware.edu.cc.benutzer.rest.controller.v0.DummyController;
-import de.qaware.edu.cc.benutzer.service.MyService;
+import de.qaware.edu.cc.benutzer.rest.controller.v0.BenutzerController;
+import de.qaware.edu.cc.benutzer.service.AppService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,29 +23,29 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- * Test the dummy controller.
+ * Test the benutzer controller.
  *
  * Created by simon.baeumler on 14.10.2015.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = {DummyTestConfig.class})
+@SpringBootTest(classes = {BenutzerTestConfig.class})
 @WebAppConfiguration
 @ActiveProfiles("test")
-public class DummyControllerTest {
+public class BenutzerControllerTest {
 
     private MockMvc mvc;
 
     @Autowired
-    MyService myService;
+    AppService myService;
 
     @Before
     public void setUp() throws Exception {
-        mvc = MockMvcBuilders.standaloneSetup(new DummyController(myService)).build();
+        mvc = MockMvcBuilders.standaloneSetup(new BenutzerController(myService)).build();
     }
 
     @Test
-    public void testGetDummyData() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get(DummyService.VALUE_PATH)
+    public void testGetBenutzerData() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.get(de.qaware.edu.cc.benutzer.BenutzerService.VALUE_PATH)
                 .accept(MediaType.APPLICATION_JSON)
                 .param("name", "testval"))
                 .andExpect(status().isOk())
@@ -55,8 +55,8 @@ public class DummyControllerTest {
     }
 
     @Test
-    public void testGetDummyNotFound() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/dummynotfound")
+    public void testGetBenutzerNotFound() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.get("/benutzernotfound")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().is4xxClientError());
     }

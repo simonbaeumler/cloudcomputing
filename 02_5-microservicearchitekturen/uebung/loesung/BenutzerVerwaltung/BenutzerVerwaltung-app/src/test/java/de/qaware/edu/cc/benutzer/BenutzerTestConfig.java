@@ -3,7 +3,7 @@
  */
 package de.qaware.edu.cc.benutzer;
 
-import de.qaware.edu.cc.benutzer.service.MyService;
+import de.qaware.edu.cc.benutzer.service.AppService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -16,11 +16,11 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConfigurationProperties
 @ComponentScan
-public class DummyTestConfig {
+public class BenutzerTestConfig {
 
     @Bean
-    public MyService dummyService(@Value("${BenutzerVerwaltung.url}") String url) {
-        return new MyService(url);
+    public AppService benutzerService(@Value("${BenutzerVerwaltung.url}") String url) {
+        return new AppService(url);
     }
 
 }
