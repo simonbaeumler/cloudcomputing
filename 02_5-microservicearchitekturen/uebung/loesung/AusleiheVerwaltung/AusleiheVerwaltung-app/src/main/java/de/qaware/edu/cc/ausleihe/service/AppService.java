@@ -5,6 +5,9 @@ package de.qaware.edu.cc.ausleihe.service;
 
 import de.qaware.edu.cc.ausleihe.datamodel.Ausleihe;
 import de.qaware.edu.cc.ausleihe.dto.AusleiheDTO;
+import de.qaware.edu.cc.benutzer.client.BenutzerServiceClient;
+import de.qaware.edu.cc.benutzer.dto.BenutzerDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,11 +21,15 @@ public class AppService {
 
     private Map<Long, Ausleihe> ausleihen;
 
-    public AppService(String url) {
+    @Autowired
+    private BenutzerServiceClient benutzerServiceClient;
+
+
+    public AppService() {
         this.ausleihen = new HashMap<Long, Ausleihe>();
-        this.ausleihen.put(123L, new Ausleihe(111L, 123L, 987L));
-        this.ausleihen.put(234L, new Ausleihe(222L, 234L, 876L));
-        this.ausleihen.put(345L, new Ausleihe(333L, 345L, 765L));
+        this.ausleihen.put(111L, new Ausleihe(111L, 123L, 987L));
+        this.ausleihen.put(222L, new Ausleihe(222L, 234L, 876L));
+        this.ausleihen.put(333L, new Ausleihe(333L, 345L, 765L));
     }
 
 
@@ -36,12 +43,12 @@ public class AppService {
 
         Ausleihe ausleihe = ausleihen.get(id);
 
-        // TODO get Benutzer from Benutzerverwaltung
+        BenutzerDTO benutzerValue = benutzerServiceClient.getBenutzerValue(ausleihe.getBenutzerId());
 
         // TODO get Book from Bookshelf
 
         // TODO add data from fetched Benutzer and Book
-        AusleiheDTO ausleiheDTO = new AusleiheDTO(id, null, null, null);
+        AusleiheDTO ausleiheDTO = new AusleiheDTO(id, benutzerValue.getName(), null, null);
         return ausleiheDTO;
     }
 }

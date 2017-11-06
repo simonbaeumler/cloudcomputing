@@ -17,12 +17,11 @@
 
     <dependencies>
 
-        <!--<dependency>-->
-            <!--<groupId>de.qaware.edu.cc.benutzer</groupId>-->
-            <!--<artifactId>BenutzerVerwaltung-client</artifactId>-->
-            <!--<version>0.1.0-SNAPSHOT</version>-->
-        <!--</dependency>-->
-
+        <dependency>
+            <groupId>de.qaware.edu.cc.benutzer</groupId>
+            <artifactId>BenutzerVerwaltung-client</artifactId>
+            <version>0.1.0-SNAPSHOT</version>
+        </dependency>
 
         <!-- service dependencies -->
         <dependency>

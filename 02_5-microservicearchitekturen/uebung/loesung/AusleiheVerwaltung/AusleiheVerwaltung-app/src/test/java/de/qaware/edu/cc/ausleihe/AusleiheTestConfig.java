@@ -20,7 +20,7 @@ public class AusleiheTestConfig {
 
     @Bean
     public AppService benutzerService(@Value("${AusleiheVerwaltung.url}") String url) {
-        return new AppService(url);
+        return new AppService();
     }
 
 }

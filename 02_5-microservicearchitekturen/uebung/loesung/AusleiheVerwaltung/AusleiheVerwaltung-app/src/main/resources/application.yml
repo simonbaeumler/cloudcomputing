@@ -31,7 +31,8 @@ AusleiheVerwaltung:
 
 # defines service the collector uses
 services:
-    otherserivce: "localhost:8080"
+    BenutzerVerwaltung: "localhost:8084"
+
 
 ---
 spring:
