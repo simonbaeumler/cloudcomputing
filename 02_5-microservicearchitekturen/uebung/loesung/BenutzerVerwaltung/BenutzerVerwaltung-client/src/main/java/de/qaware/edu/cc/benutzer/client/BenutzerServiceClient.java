@@ -12,7 +12,7 @@ import org.springframework.cloud.netflix.feign.FeignClient;
  * Created by christoph.schauer on 26.10.2015.
  */
 
-@FeignClient(url = "${services.BenutzerVerwaltung}")
+@FeignClient(name = "benutzerverwaltung", url = "${services.BenutzerVerwaltung}")
 public interface BenutzerServiceClient extends BenutzerService {
     //empty
 }
