@@ -20,7 +20,7 @@ public class AppService {
         this.benutzer = new HashMap<Long, BenutzerDTO>();
         this.benutzer.put(123L, new BenutzerDTO(123L, "Albert Alpha", "Adresse 1"));
         this.benutzer.put(234L, new BenutzerDTO(234L, "Bernd Benutzer", "Adresse 2"));
-        this.benutzer.put(345L, new BenutzerDTO(123L, "Charlotte Clever", "Adresse 3"));
+        this.benutzer.put(345L, new BenutzerDTO(345L, "Charlotte Clever", "Adresse 3"));
     }
 
     private Map<Long, BenutzerDTO> benutzer;

@@ -2,10 +2,10 @@ spring:
     profiles.active: development
 
 server:
-    port: 8080
+    port: 8084
 
 management:
-    port: 8081
+    port: 8085
 
 info:
     app:
