@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>BenutzerVerwaltung-client</artifactId>
+    <packaging>jar</packaging>
+    <name>DTAG TASTE OS / BenutzerVerwaltung / Client</name>
+
+    <parent>
+        <groupId>de.qaware.edu.cc.benutzer</groupId>
+        <artifactId>BenutzerVerwaltung</artifactId>
+        <relativePath>../pom.xml</relativePath>
+        <version>0.1.0-SNAPSHOT</version>
+    </parent>
+
+    <dependencies>
+        <!-- service dependencies -->
+        <dependency>
+            <groupId>de.qaware.edu.cc.benutzer</groupId>
+            <artifactId>BenutzerVerwaltung-api</artifactId>
+        </dependency>
+
+        <!-- Spring cloud - for rest client generation -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-feign</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>

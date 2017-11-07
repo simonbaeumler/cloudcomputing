@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>de.qaware.edu.cc.benutzer</groupId>
+    <artifactId>BenutzerVerwaltung</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>DTAG TASTE OS / BenutzerVerwaltung</name>
+
+    <modules>
+        <module>BenutzerVerwaltung-api</module>
+        <module>BenutzerVerwaltung-app</module>
+        <module>BenutzerVerwaltung-client</module>
+    </modules>
+
+    <properties>
+        <!-- spring boot run class -->
+        <start-class>de.qaware.edu.cc.benutzer.BenutzerVerwaltung.Application</start-class>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <!-- service dependencies for domain -->
+            <dependency>
+                <groupId>de.qaware.edu.cc.benutzer</groupId>
+                <artifactId>BenutzerVerwaltung-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>1.5.8.RELEASE</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter</artifactId>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-logging</artifactId>
+                    </exclusion>
+                </exclusions>
+                <version>1.5.8.RELEASE</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-log4j2</artifactId>
+                <version>1.5.8.RELEASE</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>2.5.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <scope>test</scope>
+                <version>1.5.8.RELEASE</version>
+            </dependency>
+
+            <!-- app -->
+
+            <!-- Feign -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-feign</artifactId>
+                <version>1.3.5.RELEASE</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-configuration-processor</artifactId>
+                <optional>true</optional>
+                <version>1.5.8.RELEASE</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.telekom.sec.tos</groupId>
+                <artifactId>swagger-ui</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-actuator</artifactId>
+                <version>1.5.8.RELEASE</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.jayway.jsonpath</groupId>
+                <artifactId>json-path</artifactId>
+                <scope>test</scope>
+                <version>2.4.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.jayway.jsonpath</groupId>
+                <artifactId>json-path-assert</artifactId>
+                <scope>test</scope>
+                <version>2.4.0</version>
+            </dependency>
+
+
+
+            <!-- Service commons -->
+            <!--<dependency>-->
+                <!--<groupId>com.telekom.sec.tos</groupId>-->
+                <!--<artifactId>service-commons</artifactId>-->
+                <!--<version>0.1.0-SNAPSHOT</version>-->
+            <!--</dependency>-->
+        </dependencies>
+    </dependencyManagement>
+
+    <scm>
+        <connection>scm:git:https://www.qaware.de/git/DTAG-TASTE-OS</connection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <repositories>
+        <repository>
+            <id>qaware-external</id>
+            <url>https://www.qaware.de/nexus/content/groups/external</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+
+        <repository>
+            <id>taste-os-release</id>
+            <url>https://www.qaware.de/nexus/content/repositories/DTAG-TASTE-OS/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+
+        <repository>
+            <id>taste-os-snapshot</id>
+            <url>https://www.qaware.de/nexus/content/repositories/DTAG-TASTE-OS-SNAPSHOTS/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <distributionManagement>
+        <repository>
+            <id>taste-os-release</id>
+            <name>Internal Releases</name>
+            <url>https://www.qaware.de/nexus/content/repositories/DTAG-TASTE-OS/</url>
+        </repository>
+
+        <snapshotRepository>
+            <id>taste-os-snapshot</id>
+            <name>Internal Releases</name>
+            <url>https://www.qaware.de/nexus/content/repositories/DTAG-TASTE-OS-SNAPSHOTS/</url>
+        </snapshotRepository>
+    </distributionManagement>
+</project>

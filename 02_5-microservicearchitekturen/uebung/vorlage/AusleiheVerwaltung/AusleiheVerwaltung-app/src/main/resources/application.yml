@@ -1,0 +1,69 @@
+spring:
+    profiles.active: development
+
+server:
+    port: 8082
+
+management:
+    port: 8083
+
+info:
+    app:
+        name: "AusleiheVerwaltung Service"
+        description: "The service description"
+        version: "@project.version@"
+    git:
+        hash: "@git.commit.id@"
+        user: "@git.commit.user.name@ <@git.commit.user.email@>"
+        time: "@git.commit.time@"
+    build:
+        number: "@env.BUILD_NUMBER@"
+        user: "@git.build.user.name@"
+        time: "@git.build.time@"
+        host: "@git.build.host@"
+
+AusleiheVerwaltung:
+    swagger:
+        title: "AusleiheVerwaltung API"
+        version: "@project.version@"
+        contact: "QAware GmbH"
+        description: "This is the documentation for the AusleiheVerwaltung service."
+
+# defines service the collector uses
+services:
+    otherserivce: "localhost:8080"
+
+---
+spring:
+   profiles: production
+
+AusleiheVerwaltung:
+    url: "http://myprod.url"
+
+logging:
+    level:
+        com.telekom.sec.tos.AusleiheVerwaltung: 'WARN'
+
+
+---
+spring:
+    profiles: development
+
+AusleiheVerwaltung:
+    url: "http://dev.url"
+
+logging:
+    level:
+        com.telekom.sec.tos.AusleiheVerwaltung: 'TRACE'
+
+
+---
+spring:
+    profiles: test
+
+AusleiheVerwaltung:
+    url: "http://test.url"
+
+logging:
+    level:
+        com.telekom.sec.tos.AusleiheVerwaltung: 'DEBUG'

@@ -1,0 +1,69 @@
+spring:
+    profiles.active: development
+
+server:
+    port: 8084
+
+management:
+    port: 8085
+
+info:
+    app:
+        name: "BenutzerVerwaltung Service"
+        description: "The service description"
+        version: "@project.version@"
+    git:
+        hash: "@git.commit.id@"
+        user: "@git.commit.user.name@ <@git.commit.user.email@>"
+        time: "@git.commit.time@"
+    build:
+        number: "@env.BUILD_NUMBER@"
+        user: "@git.build.user.name@"
+        time: "@git.build.time@"
+        host: "@git.build.host@"
+
+BenutzerVerwaltung:
+    swagger:
+        title: "BenutzerVerwaltung API"
+        version: "@project.version@"
+        contact: "QAware GmbH"
+        description: "This is the documentation for the BenutzerVerwaltung service."
+
+# defines service the collector uses
+services:
+    otherserivce: "localhost:8080"
+
+---
+spring:
+   profiles: production
+
+BenutzerVerwaltung:
+    url: "http://myprod.url"
+
+logging:
+    level:
+        com.telekom.sec.tos.BenutzerVerwaltung: 'WARN'
+
+
+---
+spring:
+    profiles: development
+
+BenutzerVerwaltung:
+    url: "http://dev.url"
+
+logging:
+    level:
+        com.telekom.sec.tos.BenutzerVerwaltung: 'TRACE'
+
+
+---
+spring:
+    profiles: test
+
+BenutzerVerwaltung:
+    url: "http://test.url"
+
+logging:
+    level:
+        com.telekom.sec.tos.BenutzerVerwaltung: 'DEBUG'
