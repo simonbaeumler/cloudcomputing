@@ -3,6 +3,8 @@
  */
 package de.qaware.edu.cc.ausleihe.service;
 
+import de.qaware.edu.cc.ausleihe.client.Book;
+import de.qaware.edu.cc.ausleihe.client.BookshelfClient;
 import de.qaware.edu.cc.ausleihe.datamodel.Ausleihe;
 import de.qaware.edu.cc.ausleihe.dto.AusleiheDTO;
 import de.qaware.edu.cc.benutzer.client.BenutzerServiceClient;
@@ -24,6 +26,8 @@ public class AppService {
     @Autowired
     private BenutzerServiceClient benutzerServiceClient;
 
+    @Autowired
+    private BookshelfClient bookshelfClient;
 
     public AppService() {
         this.ausleihen = new HashMap<Long, Ausleihe>();
@@ -36,7 +40,7 @@ public class AppService {
     /**
      * A service method.
      *
-     * @param name the query parameter
+     * @param id the query parameter
      * @return a benutzer dto
      */
     public AusleiheDTO getAusleiheDataContent(long id) {
@@ -45,10 +49,9 @@ public class AppService {
 
         BenutzerDTO benutzerValue = benutzerServiceClient.getBenutzerValue(ausleihe.getBenutzerId());
 
-        // TODO get Book from Bookshelf
+        Book book = bookshelfClient.byIsbn(ausleihe.getBuchIsbn());
 
-        // TODO add data from fetched Benutzer and Book
-        AusleiheDTO ausleiheDTO = new AusleiheDTO(id, benutzerValue.getName(), null, null);
+        AusleiheDTO ausleiheDTO = new AusleiheDTO(id, benutzerValue.getName(), book.getTitle(), book.getAuthor());
         return ausleiheDTO;
     }
 }

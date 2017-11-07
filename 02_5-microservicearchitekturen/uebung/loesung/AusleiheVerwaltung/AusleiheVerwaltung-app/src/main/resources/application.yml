@@ -32,7 +32,7 @@ AusleiheVerwaltung:
 # defines service the collector uses
 services:
     BenutzerVerwaltung: "localhost:8084"
-
+    Bookshelf: "localhost:8080"
 
 ---
 spring:
