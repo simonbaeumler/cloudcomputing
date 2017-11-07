@@ -18,7 +18,7 @@ public class AusleiheConfig {
 
     @Bean
     public AppService ausleiheService(@Value("${AusleiheVerwaltung.url}") String url) {
-        return new AppService(url);
+        return new AppService();
     }
 
 }
