@@ -8,6 +8,8 @@
 
 *Hinweis:* Sollte Vargant nicht funktionieren oder der Download der Virtuellen Maschine zu lange dauern, dann können Sie die folgende Übung ab Schritt 3 auch hier durchführen: https://www.katacoda.com/courses/docker/playground
 
+## Überblick
+
 ![Überblick über die Services](Uebung_ServicePackageDependencies.png)
 
 ## Aufgabe 1: Aufruf von REST-Services
