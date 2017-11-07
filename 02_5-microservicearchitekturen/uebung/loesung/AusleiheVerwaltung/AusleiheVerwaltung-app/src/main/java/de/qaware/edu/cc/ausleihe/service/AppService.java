@@ -27,9 +27,9 @@ public class AppService {
 
     public AppService() {
         this.ausleihen = new HashMap<Long, Ausleihe>();
-        this.ausleihen.put(111L, new Ausleihe(111L, 123L, 987L));
-        this.ausleihen.put(222L, new Ausleihe(222L, 234L, 876L));
-        this.ausleihen.put(333L, new Ausleihe(333L, 345L, 765L));
+        this.ausleihen.put(111L, new Ausleihe(111L, 123L, "1234"));
+        this.ausleihen.put(222L, new Ausleihe(222L, 234L, "1234"));
+        this.ausleihen.put(333L, new Ausleihe(333L, 345L, "4567"));
     }
 
 

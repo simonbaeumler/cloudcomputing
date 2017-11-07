@@ -13,12 +13,12 @@ public class Ausleihe {
 
     long benutzerId;
 
-    long buchId;
+    String buchIsbn;
 
-    public Ausleihe(long id, long benutzerId, long buchId) {
+    public Ausleihe(long id, long benutzerId, String buchIsbn) {
         this.id = id;
         this.benutzerId = benutzerId;
-        this.buchId = buchId;
+        this.buchIsbn = buchIsbn;
     }
 
     public long getId() {
@@ -37,11 +37,11 @@ public class Ausleihe {
         this.benutzerId = benutzerId;
     }
 
-    public long getBuchId() {
-        return buchId;
+    public String getBuchIsbn() {
+        return buchIsbn;
     }
 
-    public void setBuchId(long buchId) {
-        this.buchId = buchId;
+    public void setBuchIsbn(String buchIsbn) {
+        this.buchIsbn = buchIsbn;
     }
 }
