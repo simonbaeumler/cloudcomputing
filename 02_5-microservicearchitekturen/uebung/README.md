@@ -72,6 +72,10 @@ Tip: Pfad-Variablen kann man über die Annotation '@PathVariable("nameOfPlacehol
 (1)
 Logstash, Elastic, und Kibana installieren. (apt get install …) 
 
+* https://www.elastic.co/de/downloads/logstash
+* https://www.elastic.co/de/downloads/elasticsearch
+* https://www.elastic.co/de/downloads/kibana
+
 (2)
 Logstash Konfigurieren
 ```
