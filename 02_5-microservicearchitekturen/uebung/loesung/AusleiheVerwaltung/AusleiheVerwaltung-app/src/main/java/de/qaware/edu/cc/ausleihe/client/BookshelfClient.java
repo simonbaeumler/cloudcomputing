@@ -35,5 +35,5 @@ public interface BookshelfClient {
     @RequestMapping(value = VALUE_PATH,
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    Book byIsbn(@PathVariable("isbn") String isbn);
+
 }
