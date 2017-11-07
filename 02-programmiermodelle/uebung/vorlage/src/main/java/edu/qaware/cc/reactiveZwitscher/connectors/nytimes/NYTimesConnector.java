@@ -31,7 +31,7 @@ public class NYTimesConnector {
             Client client = ClientBuilder.newClient();
             String articles = client.target("http://api.nytimes.com/")
                     .path("svc/search/v2/articlesearch.json")
-                    .queryParam("api-key", "sample-key")
+                    .queryParam("api-key", "")
                     .queryParam("q", term)
                     .request(MediaType.APPLICATION_JSON_TYPE)
                     .get(String.class);
@@ -45,7 +45,7 @@ public class NYTimesConnector {
             List<String> result = new ArrayList<String>();
             
             //Wir wollen nur die Rohwerte und keine Metadaten
-            for (Object value : (JSONArray) jsonResult.get(1)) {
+            for (Object value : (JSONArray) jsonResult.get(0)) {
                 Map<Object, Object> document = (Map) value;
 
                 result.add("-------------------");
