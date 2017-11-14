@@ -1,0 +1,407 @@
+simon.baeumler@QA-NB-0633 D:\work\20170823_cloudcomputing_unibingen_vorbereitung\vagrant_test                                                                                                                                         
+> vagrant up                                                                                                                                                                                                                          
+Bringing machine 'default' up with 'virtualbox' provider...                                                                                                                                                                           
+==> default: Checking if box 'hashicorp/boot2docker' is up to date...                                                                                                                                                                 
+==> default: Clearing any previously set forwarded ports...                                                                                                                                                                           
+==> default: Clearing any previously set network interfaces...                                                                                                                                                                        
+==> default: Preparing network interfaces based on configuration...                                                                                                                                                                   
+    default: Adapter 1: nat                                                                                                                                                                                                           
+==> default: Forwarding ports...                                                                                                                                                                                                      
+    default: 2375 (guest) => 2375 (host) (adapter 1)                                                                                                                                                                                  
+    default: 22 (guest) => 2222 (host) (adapter 1)                                                                                                                                                                                    
+==> default: Running 'pre-boot' VM customizations...                                                                                                                                                                                  
+==> default: Booting VM...                                                                                                                                                                                                            
+==> default: Waiting for machine to boot. This may take a few minutes...                                                                                                                                                              
+    default: SSH address: 127.0.0.1:2222                                                                                                                                                                                              
+    default: SSH username: docker                                                                                                                                                                                                     
+    default: SSH auth method: password                                                                                                                                                                                                
+==> default: Machine booted and ready!                                                                                                                                                                                                
+==> default: Machine already provisioned. Run `vagrant provision` or use the `--provision`                                                                                                                                            
+==> default: flag to force provisioning. Provisioners marked to run always will still run.                                                                                                                                            
+                                                                                                                                                                                                                                      
+simon.baeumler@QA-NB-0633 D:\work\20170823_cloudcomputing_unibingen_vorbereitung\vagrant_test                                                                                                                                         
+> vagrant ssh                                                                                                                                                                                                                         
+==> default: The machine you're attempting to SSH into is configured to use                                                                                                                                                           
+==> default: password-based authentication. Vagrant can't script entering the                                                                                                                                                         
+==> default: password for you. If you're prompted for a password, please enter                                                                                                                                                        
+==> default: the same password you have configured in the Vagrantfile.                                                                                                                                                                
+docker@127.0.0.1's password:                                                                                                                                                                                                          
+                        ##         .                                                                                                                                                                                                  
+                  ## ## ##        ==                                                                                                                                                                                                  
+               ## ## ## ## ##    ===                                                                                                                                                                                                  
+           /"""""""""""""""""\___/ ===                                                                                                                                                                                                
+      ~~~ {~~ ~~~~ ~~~ ~~~~ ~~~ ~ /  ===- ~~~                                                                                                                                                                                         
+           \______ o           __/                                                                                                                                                                                                    
+             \    \         __/                                                                                                                                                                                                       
+              \____\_______/                                                                                                                                                                                                          
+ _                 _   ____     _            _                                                                                                                                                                                        
+| |__   ___   ___ | |_|___ \ __| | ___   ___| | _____ _ __                                                                                                                                                                            
+| '_ \ / _ \ / _ \| __| __) / _` |/ _ \ / __| |/ / _ \ '__|                                                                                                                                                                           
+| |_) | (_) | (_) | |_ / __/ (_| | (_) | (__|   <  __/ |                                                                                                                                                                              
+|_.__/ \___/ \___/ \__|_____\__,_|\___/ \___|_|\_\___|_|                                                                                                                                                                              
+Boot2Docker version 1.7.0, build master : 7960f90 - Thu Jun 18 18:31:45 UTC 2015                                                                                                                                                      
+Docker version 1.7.0, build 0baf609                                                                                                                                                                                                   
+docker@boot2docker:~$ docker run -i -t alpine /bin/sh                                                                                                                                                                                 
+/ # apk update                                                                                                                                                                                                                        
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.6/main/x86_64/APKINDEX.tar.gz                                                                                                                                                           
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.6/community/x86_64/APKINDEX.tar.gz                                                                                                                                                      
+v3.6.2-201-g6289c8472a [http://dl-cdn.alpinelinux.org/alpine/v3.6/main]                                                                                                                                                               
+v3.6.2-202-g73ecb97156 [http://dl-cdn.alpinelinux.org/alpine/v3.6/community]                                                                                                                                                          
+OK: 8438 distinct packages available                                                                                                                                                                                                  
+/ # apk add nginx                                                                                                                                                                                                                     
+(1/2) Installing pcre (8.41-r0)                                                                                                                                                                                                       
+(2/2) Installing nginx (1.12.2-r0)                                                                                                                                                                                                    
+Executing nginx-1.12.2-r0.pre-install                                                                                                                                                                                                 
+Executing busybox-1.26.2-r7.trigger                                                                                                                                                                                                   
+OK: 5 MiB in 13 packages                                                                                                                                                                                                              
+/ # nginx                                                                                                                                                                                                                             
+/ # nginx: [emerg] open() "/run/nginx/nginx.pid" failed (2: No such file or directory)                                                                                                                                                
+                                                                                                                                                                                                                                      
+/ # cd /                                                                                                                                                                                                                              
+/ # cd /run                                                                                                                                                                                                                           
+/run # mkdir /run/nginx                                                                                                                                                                                                               
+/run # nginx                                                                                                                                                                                                                          
+/run # ps                                                                                                                                                                                                                             
+PID   USER     TIME   COMMAND                                                                                                                                                                                                         
+    1 root       0:00 /bin/sh                                                                                                                                                                                                         
+   22 root       0:00 nginx: master process nginx                                                                                                                                                                                     
+   23 nginx      0:00 nginx: worker process                                                                                                                                                                                           
+   24 root       0:00 ps                                                                                                                                                                                                              
+/run # apk add curl                                                                                                                                                                                                                   
+(1/4) Installing ca-certificates (20161130-r2)                                                                                                                                                                                        
+(2/4) Installing libssh2 (1.8.0-r1)                                                                                                                                                                                                   
+(3/4) Installing libcurl (7.56.1-r0)                                                                                                                                                                                                  
+(4/4) Installing curl (7.56.1-r0)                                                                                                                                                                                                     
+Executing busybox-1.26.2-r7.trigger                                                                                                                                                                                                   
+Executing ca-certificates-20161130-r2.trigger                                                                                                                                                                                         
+OK: 7 MiB in 17 packages                                                                                                                                                                                                              
+/run # curl localhost:80                                                                                                                                                                                                              
+<html>                                                                                                                                                                                                                                
+<head><title>404 Not Found</title></head>                                                                                                                                                                                             
+<body bgcolor="white">                                                                                                                                                                                                                
+<center><h1>404 Not Found</h1></center>                                                                                                                                                                                               
+<hr><center>nginx</center>                                                                                                                                                                                                            
+</body>                                                                                                                                                                                                                               
+</html>                                                                                                                                                                                                                               
+/run # exit                                                                                                                                                                                                                           
+docker@boot2docker:~$ docker ps -a                                                                                                                                                                                                    
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS               NAMES                                                                                                 
+fc8884fe8918        alpine              "/bin/sh"           5 minutes ago       Exited (0) 46 seconds ago                       stoic_pasteur                                                                                         
+docker@boot2docker:~$ docker commit fc8884fe8918                                                                                                                                                                                      
+85fe039514a9eb2fb15ecb5b6e36b15345f42f0d93843a01bb25fd8f1e98abe9                                                                                                                                                                      
+docker@boot2docker:~$ docker images                                                                                                                                                                                                   
+REPOSITORY          TAG                 IMAGE ID            CREATED              VIRTUAL SIZE                                                                                                                                         
+<none>              <none>              85fe039514a9        About a minute ago   7.831 MB                                                                                                                                             
+alpine              latest              38135e3743e6        9 days ago           3.966 MB                                                                                                                                             
+docker@boot2docker:~$ exitConnection to 127.0.0.1 closed.                                                                                                                                                                             
+                                                                                                                                                                                                                                      
+simon.baeumler@QA-NB-0633 D:\work\20170823_cloudcomputing_unibingen_vorbereitung\vagrant_test                                                                                                                                         
+> vagrant --help                                                                                                                                                                                                                      
+Usage: vagrant [options] <command> [<args>]                                                                                                                                                                                           
+                                                                                                                                                                                                                                      
+    -v, --version                    Print the version and exit.                                                                                                                                                                      
+    -h, --help                       Print this help.                                                                                                                                                                                 
+                                                                                                                                                                                                                                      
+Common commands:                                                                                                                                                                                                                      
+     box             manages boxes: installation, removal, etc.                                                                                                                                                                       
+     connect         connect to a remotely shared Vagrant environment                                                                                                                                                                 
+     destroy         stops and deletes all traces of the vagrant machine                                                                                                                                                              
+     global-status   outputs status Vagrant environments for this user                                                                                                                                                                
+     halt            stops the vagrant machine                                                                                                                                                                                        
+     help            shows the help for a subcommand                                                                                                                                                                                  
+     init            initializes a new Vagrant environment by creating a Vagrantfile                                                                                                                                                  
+     login           log in to HashiCorp's Vagrant Cloud                                                                                                                                                                              
+     package         packages a running vagrant environment into a box                                                                                                                                                                
+     plugin          manages plugins: install, uninstall, update, etc.                                                                                                                                                                
+     port            displays information about guest port mappings                                                                                                                                                                   
+     powershell      connects to machine via powershell remoting                                                                                                                                                                      
+     provision       provisions the vagrant machine                                                                                                                                                                                   
+     push            deploys code in this environment to a configured destination                                                                                                                                                     
+     rdp             connects to machine via RDP                                                                                                                                                                                      
+     reload          restarts vagrant machine, loads new Vagrantfile configuration                                                                                                                                                    
+     resume          resume a suspended vagrant machine                                                                                                                                                                               
+     share           share your Vagrant environment with anyone in the world                                                                                                                                                          
+     snapshot        manages snapshots: saving, restoring, etc.                                                                                                                                                                       
+     ssh             connects to machine via SSH                                                                                                                                                                                      
+     ssh-config      outputs OpenSSH valid configuration to connect to the machine                                                                                                                                                    
+     status          outputs status of the vagrant machine                                                                                                                                                                            
+     suspend         suspends the machine                                                                                                                                                                                             
+     up              starts and provisions the vagrant environment                                                                                                                                                                    
+     validate        validates the Vagrantfile                                                                                                                                                                                        
+     version         prints current and latest Vagrant version                                                                                                                                                                        
+                                                                                                                                                                                                                                      
+For help on any individual command run `vagrant COMMAND -h`                                                                                                                                                                           
+                                                                                                                                                                                                                                      
+Additional subcommands are available, but are either more advanced                                                                                                                                                                    
+or not commonly used. To see all subcommands, run the command                                                                                                                                                                         
+`vagrant list-commands`.                                                                                                                                                                                                              
+                                                                                                                                                                                                                                      
+                                                                                                                                                                                                                                      
+simon.baeumler@QA-NB-0633 D:\work\20170823_cloudcomputing_unibingen_vorbereitung\vagrant_test                                                                                                                                         
+> vagrant reload                                                                                                                                                                                                                      
+==> default: Attempting graceful shutdown of VM...                                                                                                                                                                                    
+==> default: Checking if box 'hashicorp/boot2docker' is up to date...                                                                                                                                                                 
+==> default: Clearing any previously set forwarded ports...                                                                                                                                                                           
+==> default: Clearing any previously set network interfaces...                                                                                                                                                                        
+==> default: Preparing network interfaces based on configuration...                                                                                                                                                                   
+    default: Adapter 1: nat                                                                                                                                                                                                           
+==> default: Forwarding ports...                                                                                                                                                                                                      
+    default: 2375 (guest) => 2375 (host) (adapter 1)                                                                                                                                                                                  
+    default: 80 (guest) => 8080 (host) (adapter 1)                                                                                                                                                                                    
+    default: 81 (guest) => 8081 (host) (adapter 1)                                                                                                                                                                                    
+    default: 22 (guest) => 2222 (host) (adapter 1)                                                                                                                                                                                    
+==> default: Running 'pre-boot' VM customizations...                                                                                                                                                                                  
+==> default: Booting VM...                                                                                                                                                                                                            
+==> default: Waiting for machine to boot. This may take a few minutes...                                                                                                                                                              
+    default: SSH address: 127.0.0.1:2222                                                                                                                                                                                              
+    default: SSH username: docker                                                                                                                                                                                                     
+    default: SSH auth method: password                                                                                                                                                                                                
+==> default: Machine booted and ready!                                                                                                                                                                                                
+==> default: Machine already provisioned. Run `vagrant provision` or use the `--provision`                                                                                                                                            
+==> default: flag to force provisioning. Provisioners marked to run always will still run.                                                                                                                                            
+                                                                                                                                                                                                                                      
+simon.baeumler@QA-NB-0633 D:\work\20170823_cloudcomputing_unibingen_vorbereitung\vagrant_test                                                                                                                                         
+> vagrant ssh                                                                                                                                                                                                                         
+==> default: The machine you're attempting to SSH into is configured to use                                                                                                                                                           
+==> default: password-based authentication. Vagrant can't script entering the                                                                                                                                                         
+==> default: password for you. If you're prompted for a password, please enter                                                                                                                                                        
+==> default: the same password you have configured in the Vagrantfile.                                                                                                                                                                
+docker@127.0.0.1's password:                                                                                                                                                                                                          
+                        ##         .                                                                                                                                                                                                  
+                  ## ## ##        ==                                                                                                                                                                                                  
+               ## ## ## ## ##    ===                                                                                                                                                                                                  
+           /"""""""""""""""""\___/ ===                                                                                                                                                                                                
+      ~~~ {~~ ~~~~ ~~~ ~~~~ ~~~ ~ /  ===- ~~~                                                                                                                                                                                         
+           \______ o           __/                                                                                                                                                                                                    
+             \    \         __/                                                                                                                                                                                                       
+              \____\_______/                                                                                                                                                                                                          
+ _                 _   ____     _            _                                                                                                                                                                                        
+| |__   ___   ___ | |_|___ \ __| | ___   ___| | _____ _ __                                                                                                                                                                            
+| '_ \ / _ \ / _ \| __| __) / _` |/ _ \ / __| |/ / _ \ '__|                                                                                                                                                                           
+| |_) | (_) | (_) | |_ / __/ (_| | (_) | (__|   <  __/ |                                                                                                                                                                              
+|_.__/ \___/ \___/ \__|_____\__,_|\___/ \___|_|\_\___|_|                                                                                                                                                                              
+Boot2Docker version 1.7.0, build master : 7960f90 - Thu Jun 18 18:31:45 UTC 2015                                                                                                                                                      
+Docker version 1.7.0, build 0baf609                                                                                                                                                                                                   
+docker@boot2docker:~$ docker images                                                                                                                                                                                                   
+REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE                                                                                                                                          
+<none>              <none>              85fe039514a9        16 minutes ago      7.831 MB                                                                                                                                              
+alpine              latest              38135e3743e6        9 days ago          3.966 MB                                                                                                                                              
+docker@boot2docker:~$ docker tag 85fe039514a9 alpine/nginx:v1                                                                                                                                                                         
+docker@boot2docker:~$ docker images                                                                                                                                                                                                   
+REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE                                                                                                                                          
+alpine/nginx        v1                  85fe039514a9        18 minutes ago      7.831 MB                                                                                                                                              
+alpine              latest              38135e3743e6        9 days ago          3.966 MB                                                                                                                                              
+docker@boot2docker:~$ docker run -p 80:80 -d alpine/nginx:v1 nginx -g 'daemon off;'                                                                                                                                                   
+3b6db83dfe0b7642dd23901db3144ae3ae60b189de0162fb194459f0f3c3590b                                                                                                                                                                      
+docker@boot2docker:~$ docker ps                                                                                                                                                                                                       
+CONTAINER ID        IMAGE               COMMAND                CREATED             STATUS              PORTS                NAMES                                                                                                     
+3b6db83dfe0b        alpine/nginx:v1     "nginx -g 'daemon of   6 seconds ago       Up 5 seconds        0.0.0.0:80->80/tcp   thirsty_newton                                                                                            
+docker@boot2docker:~$ curl localhost:80                                                                                                                                                                                               
+<html>                                                                                                                                                                                                                                
+<head><title>404 Not Found</title></head>                                                                                                                                                                                             
+<body bgcolor="white">                                                                                                                                                                                                                
+<center><h1>404 Not Found</h1></center>                                                                                                                                                                                               
+<hr><center>nginx</center>                                                                                                                                                                                                            
+</body>                                                                                                                                                                                                                               
+</html>        
+docker@boot2docker:~$ docker run -p 81:80 -d alpine/nginx:v1 nginx -g 'daemon off;'
+e924cde192cb7cec35cf687afd73df3a21d9fe79467c2eb948daa6abdd70dd62
+docker@boot2docker:~$ docker ps
+CONTAINER ID        IMAGE               COMMAND                CREATED             STATUS              PORTS                NAMES
+e924cde192cb        alpine/nginx:v1     "nginx -g 'daemon of   3 seconds ago       Up 2 seconds        0.0.0.0:81->80/tcp   sad_meitner
+3b6db83dfe0b        alpine/nginx:v1     "nginx -g 'daemon of   6 minutes ago       Up 6 minutes        0.0.0.0:80->80/tcp   thirsty_newton
+docker@boot2docker:~$ curl localhost:81
+<html>
+<head><title>404 Not Found</title></head>
+<body bgcolor="white">
+<center><h1>404 Not Found</h1></center>
+<hr><center>nginx</center>
+</body>
+</html>
+docker@boot2docker:~$ curl localhost:82
+curl: (7) Failed connect to localhost:82; Connection refused
+                                                                                                                                                                                                                       
+docker@boot2docker:~$ curl localhost:80
+<html>
+<head><title>404 Not Found</title></head>
+<body bgcolor="white">
+<center><h1>404 Not Found</h1></center>
+<hr><center>nginx</center>
+</body>
+</html>
+docker@boot2docker:~$ docker ps
+CONTAINER ID        IMAGE               COMMAND                CREATED              STATUS              PORTS                NAMES
+e924cde192cb        alpine/nginx:v1     "nginx -g 'daemon of   About a minute ago   Up About a minute   0.0.0.0:81->80/tcp   sad_meitner
+3b6db83dfe0b        alpine/nginx:v1     "nginx -g 'daemon of   7 minutes ago        Up 7 minutes        0.0.0.0:80->80/tcp   thirsty_newton
+docker@boot2docker:~$ docker inspect sad_meitner
+[
+{
+    "Id": "e924cde192cb7cec35cf687afd73df3a21d9fe79467c2eb948daa6abdd70dd62",
+    "Created": "2017-11-13T22:04:15.678391402Z",
+    "Path": "nginx",
+    "Args": [
+        "-g",
+        "daemon off;"
+    ],
+    "State": {
+        "Running": true,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 1161,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2017-11-13T22:04:15.753766601Z",
+        "FinishedAt": "0001-01-01T00:00:00Z"
+    },
+    "Image": "85fe039514a9eb2fb15ecb5b6e36b15345f42f0d93843a01bb25fd8f1e98abe9",
+    "NetworkSettings": {
+        "Bridge": "",
+        "EndpointID": "c197960b343b5711d08bfe967f89581fc0375ce6d232d4c0d0bb68f614f51c32",
+        "Gateway": "172.17.42.1",
+        "GlobalIPv6Address": "",
+        "GlobalIPv6PrefixLen": 0,
+        "HairpinMode": false,
+        "IPAddress": "172.17.0.2",
+        "IPPrefixLen": 16,
+        "IPv6Gateway": "",
+        "LinkLocalIPv6Address": "",
+        "LinkLocalIPv6PrefixLen": 0,
+        "MacAddress": "02:42:ac:11:00:02",
+        "NetworkID": "38d173c5d38ed6d602bfdf6e11903300ecafb52d7a5e12c801a9d6c9f0fa6c2a",
+        "PortMapping": null,
+        "Ports": {
+            "80/tcp": [
+                {
+                    "HostIp": "0.0.0.0",
+                    "HostPort": "81"
+                }
+            ]
+        },
+        "SandboxKey": "/var/run/docker/netns/e924cde192cb",
+        "SecondaryIPAddresses": null,
+        "SecondaryIPv6Addresses": null
+    },
+    "ResolvConfPath": "/mnt/sda/var/lib/docker/containers/e924cde192cb7cec35cf687afd73df3a21d9fe79467c2eb948daa6abdd70dd62/resolv.conf",
+    "HostnamePath": "/mnt/sda/var/lib/docker/containers/e924cde192cb7cec35cf687afd73df3a21d9fe79467c2eb948daa6abdd70dd62/hostname",
+    "HostsPath": "/mnt/sda/var/lib/docker/containers/e924cde192cb7cec35cf687afd73df3a21d9fe79467c2eb948daa6abdd70dd62/hosts",
+    "LogPath": "/mnt/sda/var/lib/docker/containers/e924cde192cb7cec35cf687afd73df3a21d9fe79467c2eb948daa6abdd70dd62/e924cde192cb7cec35cf687afd73df3a21d9fe79467c2eb948daa6abdd70dd62-json.log",
+    "Name": "/sad_meitner",
+    "RestartCount": 0,
+    "Driver": "aufs",
+    "ExecDriver": "native-0.2",
+    "MountLabel": "",
+    "ProcessLabel": "",
+    "Volumes": {},
+    "VolumesRW": {},
+    "AppArmorProfile": "",
+    "ExecIDs": null,
+    "HostConfig": {
+        "Binds": null,
+        "ContainerIDFile": "",
+        "LxcConf": [],
+        "Memory": 0,
+        "MemorySwap": 0,
+        "CpuShares": 0,
+        "CpuPeriod": 0,
+        "CpusetCpus": "",
+        "CpusetMems": "",
+        "CpuQuota": 0,
+        "BlkioWeight": 0,
+        "OomKillDisable": false,
+        "Privileged": false,
+        "PortBindings": {
+            "80/tcp": [
+                {
+                    "HostIp": "",
+                    "HostPort": "81"
+                }
+            ]
+        },
+        "Links": null,
+        "PublishAllPorts": false,
+        "Dns": null,
+        "DnsSearch": null,
+        "ExtraHosts": null,
+        "VolumesFrom": null,
+        "Devices": [],
+        "NetworkMode": "bridge",
+        "IpcMode": "",
+        "PidMode": "",
+        "UTSMode": "",
+        "CapAdd": null,
+        "CapDrop": null,
+        "RestartPolicy": {
+            "Name": "no",
+            "MaximumRetryCount": 0
+        },
+        "SecurityOpt": null,
+        "ReadonlyRootfs": false,
+        "Ulimits": null,
+        "LogConfig": {
+            "Type": "json-file",
+            "Config": {}
+        },
+        "CgroupParent": ""
+    },
+    "Config": {
+        "Hostname": "e924cde192cb",
+        "Domainname": "",
+        "User": "",
+        "AttachStdin": false,
+        "AttachStdout": false,
+        "AttachStderr": false,
+        "PortSpecs": null,
+        "ExposedPorts": {
+            "80/tcp": {}
+        },
+        "Tty": false,
+        "OpenStdin": false,
+        "StdinOnce": false,
+        "Env": [
+            "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+        ],
+        "Cmd": [
+            "nginx",
+            "-g",
+            "daemon off;"
+        ],
+        "Image": "alpine/nginx:v1",
+        "Volumes": null,
+        "VolumeDriver": "",
+        "WorkingDir": "",
+        "Entrypoint": null,
+        "NetworkDisabled": false,
+        "MacAddress": "",
+        "OnBuild": null,
+        "Labels": {}
+    }
+}
+]
+docker@boot2docker:~$ docker logs sad_meitner
+docker@boot2docker:~$ docker logs thirsty_newton
+docker@boot2docker:~$ docker stop sad_meitner
+sad_meitner
+docker@boot2docker:~$ docker stop thirsty_newton
+thirsty_newton
+docker@boot2docker:~$ docker ps -a
+CONTAINER ID        IMAGE               COMMAND                CREATED             STATUS                      PORTS               NAMES
+e924cde192cb        alpine/nginx:v1     "nginx -g 'daemon of   4 minutes ago       Exited (0) 19 seconds ago                       sad_meitner
+3b6db83dfe0b        alpine/nginx:v1     "nginx -g 'daemon of   10 minutes ago      Exited (0) 6 seconds ago                        thirsty_newton
+fc8884fe8918        alpine              "/bin/sh"              38 minutes ago      Exited (0) 34 minutes ago                       stoic_pasteur
+docker@boot2docker:~$ exitConnection to 127.0.0.1 closed.
+
+simon.baeumler@QA-NB-0633 D:\work\20170823_cloudcomputing_unibingen_vorbereitung\vagrant_test
+> vagrant halt
+==> default: Attempting graceful shutdown of VM...
+
+simon.baeumler@QA-NB-0633 D:\work\20170823_cloudcomputing_unibingen_vorbereitung\vagrant_test
+> 
+
+
+
+
+                                                                                                                                                                                                        
+                                                                                                                                                                                                                                      
+                                                                                                                                                                                                                                      
