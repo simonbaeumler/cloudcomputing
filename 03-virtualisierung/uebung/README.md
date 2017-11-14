@@ -13,7 +13,8 @@
 *Hinweis:* Sollte Vargant nicht funktionieren oder der Download der Virtuellen Maschine zu lange dauern, dann können Sie die folgende Übung ab Schritt 3 auch hier durchführen: https://www.katacoda.com/courses/docker/playground
 
 ## Aufgaben
-1. Starten sie die vorbereitend erzeugte Vagrant Box und überprüfen sie die Log-Ausgaben dabei.
+1. Erste Schritte mit Vagrant und Docker 
+* Starten sie die vorbereitend erzeugte Vagrant Box und überprüfen sie die Log-Ausgaben dabei.
 * Verbinden sie sich per `vagrant ssh` per Kommandozeile in die Vagrant Box. Das Passwort dafür ist *tcuser*.
 * Starten sie einen Docker Container auf Basis des *alpine* Images und lassen sie darin eine interaktive Konsole als Entrypoint-Prozess laufen.
 * Initialisieren sie die Paketmanager *apk* mit `apk update`
@@ -25,6 +26,8 @@
 * Erstellen sie ein Image aus dem erzeugten Container mit dem Befehl `docker commit <CONTAINER ID> cloudcomputing/nginx`
 * Lassen sie sich mit `docker images` alle von Docker verwalteten Images anzeigen und prüfen sie, ob das soeben erzeugte Image mit dabei ist.
 * Steigen sie per `exit` aus der Vagrant Box aus hin zur anfänglichen Kommandozeile.
+
+2. Wiederverwendung von Docker-Images
 * Öffnen sie das Vagrantfile mit einem Texteditor uns suchen sie darin das Beispiel für ein Port Forwarding. Leiten sie die Ports 80 und 81 aus dem Gast-System auf die Ports 8080 bzw. 8081 des Host-Systems weiter.
 * Laden sie die Vagrant Box per `vagrant reload` neu. Dabei wird die Konfiguration neu eingespielt. Verbinden sie sich per Kommandozeile in die Vagrant Box.
 * Starten sie einen NGINX Container im Daemon-Modus und leiten sie dabei den Gast-Port 80 auf den Host-Port 80 weiter. Der Entrypoint-Prozess ist dabei NGINX. NGINX muss dabei aber im Vordergrund, also im Nicht-Daemon-Modus, laufen: `nginx -g 'daemon off;'`
@@ -34,7 +37,7 @@
 * Inspizieren sie die Docker Container mit `docker inspect` und lassen sie sich die Systemlogs in den Containern per `docker logs` ausgeben.
 * Fahren sie innerhalb der Vagrant Box zunächst per `docker stop` die beiden Docker Container herunter und beenden sie anschließend die Vagrant Box über `vagrant halt`.
 
-## Fundierter Einstieg in Docker
+## (Kür - empfohlen) Fundierter Einstieg in Docker
 Für die Vorlesung wird empfohlen einen tieferen Einstieg in Docker zu machen, als dies im Rahmen der Übung möglich ist. Nutzen sie hierfür den dreien Docker-Kurs auf Katacoda: https://katacoda.com/courses/docker. Arbeiten Sie die folgenden Szenarien im Sinne einer Hausaufgabe durch:
  * Launching Containers
  * Deploy Static HTML Websites as Container
