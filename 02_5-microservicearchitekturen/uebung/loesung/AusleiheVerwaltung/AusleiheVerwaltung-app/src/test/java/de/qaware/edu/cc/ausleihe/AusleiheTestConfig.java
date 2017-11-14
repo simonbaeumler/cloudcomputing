@@ -19,7 +19,7 @@ import org.springframework.context.annotation.Configuration;
 public class AusleiheTestConfig {
 
     @Bean
-    public AppService benutzerService(@Value("${AusleiheVerwaltung.url}") String url) {
+    public AppService benutzerService() {
         return new AppService();
     }
 
