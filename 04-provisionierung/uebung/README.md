@@ -40,9 +40,9 @@ Nun starten sie einen HAProxy Container, der mit den drei NGINX Containern verbu
 * Erstellen auf dem Host-Computer (d.h. ausserhalb der Vagrant Virtuellen-Maschine) ein Verzeichnis <name> und kopieren sie die jar-Datei aus Übung 1 dorthin.
 * Erstellen sie im gleichen Verzeichnis eine Datei 'Dockerfile'
 * Bearbeiten sie das Dockerfile mit einem Texteditor, so dass der Bookshelf Service aus Übung 1 gestartet wird. Beachten sie dazu die folgenden Punkte:
-    * Installieren sie dazu das Paket apk add openjdk8-jre
-    * Kopieren sie die .jar Datei
-    * Starten sie den Java-Service mit 'java -jar /opt/app/ccexercise-0.0.1-SNAPSHOT.jar'
+    * Installieren sie das Paket 'openjdk8-jre' mit dem Packetmanager 'apk'
+    * Kopieren sie die .jar Datei in das Image
+    * Als Entrypoint starten sie den Java-Service mit dem Befehl 'java -jar /opt/app/ccexercise-0.0.1-SNAPSHOT.jar'
     * Geben sie den Port 8080 nach aussen frei
     * Hinweis: Sie können die in Übung 1 benutzen Dockerfiles als Vorlage benutzen.
 
@@ -57,6 +57,3 @@ Nun starten sie einen HAProxy Container, der mit den drei NGINX Containern verbu
 ### Testlauf
 * Starten sie das Image mit 'docker run -d -p 8080:8080 --name bookshelf1 cc/bookshelf-node:v1'
 * Überprüfen sie mit curl, ob sie innerhalb der boot2docker-Umgebung den Service erreichen können.
-
-
-
