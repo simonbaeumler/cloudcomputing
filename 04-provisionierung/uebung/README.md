@@ -48,9 +48,9 @@ Nun starten sie einen HAProxy Container, der mit den drei NGINX Containern verbu
 
 ### Bauen
 * Kopieren sie die beiden benötigten Dateien in die boot2docker-VM:
-** Dockerfile: 'vagrant scp <name>/Dockerfile :~/Dockerfile' 
-** jar-Datei: 'vagrant scp <name>/<Dateiname-jar-Datei> :~/<Dateiname-jar-Datei>' 
-** Hinweis: Wenn sie eine Datei in der VM aktisieren möchten, müssen sie das Kommando erneut ausführen.
+    * Dockerfile: 'vagrant scp <name>/Dockerfile :\~/Dockerfile' 
+    * jar-Datei: 'vagrant scp <name>/<Dateiname-jar-Datei> :\~/<Dateiname-jar-Datei>' 
+    * Hinweis: Wenn sie eine Datei in der VM aktisieren möchten, müssen sie das Kommando erneut ausführen.
 * Loggen sie sich in die boot2-docker-VM mit 'vagrant ssh' ein.
 * Bauen sie mit dem erstellten Dockerfile ein Image ('docker build -t cloudcomputing/bookshelf-node:v1')
 
