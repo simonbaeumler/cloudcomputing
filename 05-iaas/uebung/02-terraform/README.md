@@ -14,11 +14,7 @@ $ export AWS_DEFAULT_REGION="eu-central-1"
 * Installieren sie Terraform (https://www.terraform.io/downloads.html) auf ihrem Rechner.
 
 [NOTE]
-====
-Wenn sie Windows verwenden, wird wahrscheinlich der SSH Key in Aufgabe 3 nicht funktionieren. Daher wird empfohlen, die Aufgabe unter Linux (ggf. in einer VM) auszuführen.
-
-Alternativ können sie Aufgabe 3 auch mit einem anderen Studierenden bearbeiten.
-====
+Wenn sie Windows verwenden, wird wahrscheinlich der SSH Key in Aufgabe 3 nicht funktionieren. Daher wird empfohlen, die Aufgabe unter Linux (ggf. in einer VM) auszuführen. Alternativ können sie Aufgabe 3 auch mit einem anderen Studierenden bearbeiten.
 
 ## Aufgabe 1: Getting Started with Terraform
 
