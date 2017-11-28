@@ -13,8 +13,7 @@ $ export AWS_DEFAULT_REGION="eu-central-1"
 
 * Installieren sie Terraform (https://www.terraform.io/downloads.html) auf ihrem Rechner.
 
-[NOTE]
-Wenn sie Windows verwenden, wird wahrscheinlich der SSH Key in Aufgabe 3 nicht funktionieren. Daher wird empfohlen, die Aufgabe unter Linux (ggf. in einer VM) auszuführen. Alternativ können sie Aufgabe 3 auch mit einem anderen Studierenden bearbeiten.
+Hinweis: Wenn sie Windows verwenden, wird wahrscheinlich der SSH Key in Aufgabe 3 nicht funktionieren. Daher wird empfohlen, die Aufgabe unter Linux (ggf. in einer VM) auszuführen. Alternativ können sie Aufgabe 3 auch mit einem anderen Studierenden bearbeiten.
 
 ## Aufgabe 1: Getting Started with Terraform
 
@@ -52,10 +51,7 @@ an. Dies sind die Request/Responses von Terraform an die AWS Rest Schnittstelle.
 
 - https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_Operations.html
 
-[NOTE]
-====
-Sie deaktivieren die Debugausgabe, indem sie die Variable TF_LOG wieder auf einen leeren Wert setzen. 
-====
+Hinweis: Sie deaktivieren die Debugausgabe, indem sie die Variable TF_LOG wieder auf einen leeren Wert setzen. 
 
 ## Aufgabe 3: Advanced Terraform
 
