@@ -2,82 +2,130 @@
 
 ## Vorbereitung
 
-* Legen Sie sich auf Docker Hub einen privaten Account an.
-* Installieren Sie die AWS CLI auf ihrem System. https://docs.aws.amazon.com/cli/latest/userguide/installing.html
+* Legen sie sich auf Docker Hub einen privaten Account an.
+* Installieren sie die AWS CLI auf ihrem System. https://docs.aws.amazon.com/cli/latest/userguide/installing.html
 * Sie erhalten die AWS Zugriffsdaten beim Übungsbetreuer.
-* Konfigurieren Sie die AWS CLI: `aws configure`
+* Konfigurieren sie die AWS CLI: `aws configure`
 
-// DETAILS
+Sollte die Konfiguration mit `aws configure` nicht funktionieren,
+können die credentials auch durch die Umgebungsvariablen 
+`AWS_SECRET_ACCESS_KEY` und `AWS_ACCESS_KEY_ID` gesetzt werden.
 
 ## Ziel
 
-Wir wollen im Rahmen dieser Übung eine Beispiel Anwendung auf Amazon EC2 Container Service (ECS) bereitstellen.
-Wir verwenden dafür die Anwendung aus der Vorlesung und Übung __"Kommunikation"__.
+Wir wollen im Rahmen dieser Übung eine Beispiel Anwendung (bookstore) auf Amazon EC2 Container Service (ECS) bereitstellen.
+Es sollen automatisiert mehrere Instanzen gescheduled werden, um die Verfügbarkeit zu erhöhen.
+Alle Instanzen sollen über die gleiche URL im Internet erreichbar sein.
 
+Wir verwenden dafür die Anwendung aus der Vorlesung und Übung __"Kommunikation"__.
 
 ## Aufgaben
 
-### Vorbereitung
+### Docker
 
 #### Dockerfile erzeugen
 
-Schreiben Sie für den Microservice aus der Übung __"Kommunikation"__ ein `Dockerfile`.
-Verwenden Sie das bereitgestellte Dockerfile als Ausgangspunkt.
+Schreiben sie für den Microservice aus der Übung __"Kommunikation"__ ein `Dockerfile`.
+Verwenden Sie das gegebene Dockerfile als Ausgangspunkt.
 
 #### Docker Image lokal bauen
 
-Bauen und testen Sie das Image lokal. Verwenden Sie hierfür die Kommandos aus der Übung __"Virtualisierung"__.
+Bauen und testen sie das Image lokal. Verwenden sie hierfür die Kommandos aus der Übung __"Virtualisierung"__.
 
 ```bash
-$ docker build -t book-service:1.0.1 .
-$ docker run -it -p 8080:8080 book-service:1.0.1
+$ docker build -t book-service:latest .
+$ docker run -it -p 8080:8080 book-service:latest
 ```
 
-### Getting Started with Amazon EC2 Container Service (ECS)
+### Amazon EC2 Container Service (ECS)
 
-1. Melden Sie sich mit den AWS Zugriffsdaten über den Browser an der AWS Web Console an.
-2. Erstellen Sie einen Amazon EC2 Container Service (ECS) und folgen den Anweisungen.
+Melden sie sich mit den AWS Zugriffsdaten über den Browser an der 
+[ECS Web Konsole](https://eu-central-1.console.aws.amazon.com/ecs/home?region=eu-central-1#/taskDefinitions)
+an.
+Nutzen Sie den Ihnen zugewiesenen Service Account mit dem angegebenen IAM user, um sich einzuloggen.
+Stellen Sie sicher, dass Sie sich in der AWS Region `Frankfurt (eu-central-1)` befinden.
 
-![ecs](img/create_ecs.png "Setup ECS")
+_***Hinweis:***_ Bitte verwenden Sie in allen zu benennenden Resourcen immer Ihren Usernamen als prefix,
+damit eine Zuordnung zu Ihren Komponenten möglich ist!
 
-#### Step 1: Configure repository
+### Docker Registry konfigurieren
 
-Erstellen Sie ein Repository für ihren Service. Am besten bauen Sie den AWS Account-Namen ein, z.B: `cc2017/cc2017-00`.
-* Repository Name: `cc2017/cc2017-00`
-* Repository URI: 450802564356.dkr.ecr.eu-central-1.amazonaws.com/cc2017/cc2017-00
+Erstellen Sie eine Docker Registry, in die Sie die docker container des bookstore hochladen werden.
+Am besten bauen sie den AWS Account-Namen ein, z.B: `cc-user-03/bookstore`.
 
-#### Build, tag, and push Docker image
+* Repository Name: `cc-user-03/bookstore`
+* Repository URI: 123456789.dkr.ecr.eu-central-1.amazonaws.com/cc-user-03/bookstore
+
+### Docker Image pushen
 
 ```bash
+# Generieren Sie das docker login Kommando für Ihren account
 aws ecr get-login --no-include-email --region eu-central-1
 
-# kopieren Sie den Output und führen diesen in der Shell aus
+# kopieren sie den Output und führen diesen in der Shell aus (evtl. sudo)
+# zBsp. docker login -u AWS -p eyJwYXl....R9 https://761646160558.dkr.ecr.eu-central-1.amazonaws.com
 
-docker build -t cc2017/cc2017-00 .
-docker tag cc2017/cc2017-00:latest 450802564356.dkr.ecr.eu-central-1.amazonaws.com/cc2017/cc2017-00:latest
+# Taggen Sie das zuvor gebaute Docker image mit dem neuen registry namen
+docker tag book-service:latest 1234456789.dkr.ecr.eu-central-1.amazonaws.com/cc-user-03/bookstore:latest
 
-# oder
-
-docker tag book-service:1.0.1 450802564356.dkr.ecr.eu-central-1.amazonaws.com/cc2017/cc2017-00:latest
-
-docker push 450802564356.dkr.ecr.eu-central-1.amazonaws.com/cc2017/cc2017-00:latest
+# Pushen Sie das umgetaggte image in das erstellte repositort
+docker push 1234456789.dkr.ecr.eu-central-1.amazonaws.com/cc-user-03/bookstore:latest
 ```
 
-#### Create a task definition
 
-Nachdem das Image hochgeladen wurde, gehen Sie nun zum nächsten Schritt und erzeugen die Task-Definition.
-Vergeben Sie sprechende Namen für `Task definition name` und `Container name`. Als `Memory Limits (MiB)*` setzen Sie `500`.
-Bei den Port `Port mappings` setzen Sie den Container-Port `8080`.
+### Cluster erzeugen
+Nachdem das Image hochgeladen wurde, erzeugen Sie ein ECS **Linux** Cluster.
+Das ECS Cluster soll aus 2 nodes vom Typ "t2.small" bestehen. 
+Nutzen Sie die default VPC ID und security group.
 
-#### Configure service
+### Load Balancer erzeugen
+Um Resourcen aus der AWS Cloud über das Internet zu erreichen,
+benötigen wir einen Elastic Load Balancer (ELB).
+Navigieren Sie dazu in die EC2 Konsole,
+in den [Load Balancer Bereich](https://eu-central-1.console.aws.amazon.com/ec2/v2/home?region=eu-central-1#LoadBalancers).
+Erstellen Sie nun einen HTTP Load Balancer mit Port 80.
+Aktivieren Sie alle drei eu-central Availability Zones.
+Achten Sie darauf, dass VPC ID und security group mit der des Load Balancers übereinstimmen.
 
-Konfigurieren Sie einen Service für die Task Definition. Setzen Sie einen `Service name` und starten Sie `2` Tasks.
-Konfigurieren Sie ebenfalls einen Load-Balancer für den Service.
+Der Load Balancer soll eine neue Target Group erstellen (Protocol HTTP &Target Type  instance).
+Targets müssen nicht registriert werden.
 
-#### Configure cluster
+### Task Definition erstellen
 
-Konfigurieren Sie den EC2 Cluster. Vergeben Sie einen eindeutigen `Cluster name*`. Verwenden Sie `t2.micro` als `EC2 instance type*` und `2` `Number of instances*`.
+Wenn Cluster und ELB eingerichtet sind, gehen sie nun zum nächsten Schritt und erzeugen die Task-Definition.
+Diese beschreibt im wesentlichen den container aus der Docker registry, den Sie ausführen möchten.
+Kehren Sie dazu in die 
+[ECS Web Konsole](https://eu-central-1.console.aws.amazon.com/ecs/home?region=eu-central-1#/taskDefinitions)
+zurück.
 
-#### Review
+Vergeben sie sprechende Namen für `Task definition name` und `Container name`. Als `Memory Limits (MiB)*` setzen sie `500`.
+Bei den Port `Port mappings` setzen sie den Container-Port `8080`.
 
-Prüfen Sie alle Angaben und starten Sie den Cluster.
+### Service konfigurieren
+
+Konfigurieren sie einen Service für die soeben erstellte Task Definition.
+Setzen sie einen `Service name` und starten sie `2` Tasks.
+Konfigurieren Sie den zuvor eingerichteten Load Balancer als Application Load Balancer für diesen Service.
+Achten Sie darauf, den container aus dem Task zum Load Balancer hinzuzufügen.
+
+Nach dem Erstellen des Services wird dieser die für die tasks benötigten container starten und auf den 
+cluster nodes verteilen.
+
+Identifizieren Sie, welche aus der Vorlesung bekannten Placement Algorithmen Sie verwenden können.
+
+## Review
+
+Sofern alles korrekt verschaltet ist, können Sie nun über den DNS Namen des load balancers
+die book-service Instanzen erreichen.
+
+- Verifizieren Sie zunächst die Erreichbarkeit des Services.
+
+Der `/api/books` Endpunkt gibt eine Bücherliste zurück.
+Die Bücher beinhalten eine storeId, welche pro Instanz vergeben wird.
+- Verifizieren Sie, dass Sie durch mehrmaliges Neuladen der Seite beide 
+Instanzen des Book Service erreichen können.
+
+- Erhöhen Sie den Replikationsfaktor des Service.
+- Finden Sie die Engpassbeschreibung, sobald keine Replikas mehr gescheduled werden können.
+- Fügen Sie dem Cluster weitere Nodes hinzu, um den Engpass zu beseitigen.
+
