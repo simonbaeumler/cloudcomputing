@@ -17,7 +17,7 @@ Wir wollen im Rahmen dieser Übung eine Beispiel Anwendung (bookstore) auf Amazo
 Es sollen automatisiert mehrere Instanzen gescheduled werden, um die Verfügbarkeit zu erhöhen.
 Alle Instanzen sollen über die gleiche URL im Internet erreichbar sein.
 
-Wir verwenden dafür die Anwendung aus der Vorlesung und Übung __"Kommunikation"__.
+Wir verwenden dafür eine leicht modifizierte Version der Book Service Anwendung aus der Vorlesung und Übung __"Kommunikation"__.
 
 ## Aufgaben
 
@@ -25,12 +25,12 @@ Wir verwenden dafür die Anwendung aus der Vorlesung und Übung __"Kommunikation
 
 #### Dockerfile erzeugen
 
-Schreiben sie für den Microservice aus der Übung __"Kommunikation"__ ein `Dockerfile`.
+Schreiben sie für den Bookstore Microservice in diesem Verzeichnis ein `Dockerfile`.
 Verwenden Sie das gegebene Dockerfile als Ausgangspunkt.
 
 #### Docker Image lokal bauen
 
-Bauen und testen sie das Image lokal. Verwenden sie hierfür die Kommandos aus der Übung __"Virtualisierung"__.
+Bauen und testen sie das Image lokal. Verwenden sie hierfür die Kommandos aus der Übung __"Virtualisierung"__:
 
 ```bash
 $ docker build -t book-service:latest .
