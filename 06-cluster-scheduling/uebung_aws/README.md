@@ -103,7 +103,8 @@ Bei den Port `Port mappings` setzen sie den Container-Port `8080`.
 
 ### Service konfigurieren
 
-Konfigurieren sie einen Service für die soeben erstellte Task Definition.
+Konfigurieren sie einen Service für die soeben erstellte Task Definition
+(In der Task Übersicht den Task markieren, Actions > Create Service).
 Setzen sie einen `Service name` und starten sie `2` Tasks.
 Konfigurieren Sie den zuvor eingerichteten Load Balancer als Application Load Balancer für diesen Service.
 Achten Sie darauf, den container aus dem Task zum Load Balancer hinzuzufügen.
