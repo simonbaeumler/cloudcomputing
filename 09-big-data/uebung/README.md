@@ -10,9 +10,9 @@ und laden Sie die Vorlage zur Übung von github in das Verzeichnis herunter
 * Führen Sie das *Maven Goal* `clean install` aus.
 * Öffnen Sie die Website von Apache Spark (http://spark.apache.org/) für Recherchezwecke.
 * Laden Sie sich das vorkonfigurierte Apache Spark herunter
-(https://www.dropbox.com/s/0063mzb2jg3pfdh/spark-1.6.1-bin-hadoop2.6.zip?dl=0)
+(https://drive.google.com/file/d/1JF5TGVW5rAd62pR3HUJPgR2N3srTv_fS/view?usp=sharing)
 und entpacken Sie es in dem Verzeichnis, in dem auch das *vorlage* Verzeichnis zu finden ist.
-* **Nur Windows:** Laden Sie noch zusätzlich Hadoop herunter (http://www.apache.org/dyn/closer.cgi/hadoop/common/hadoop-2.6.2/hadoop-2.6.2.tar.gz). Setzen Sie anschließend die Umgebungsvariable HADOOP_HOME in ihrer Entwicklungsumgebung (z.B.: Eclipse Run -> Run Configurations .. -> Environment).
+* **Nur Windows:** Laden Sie noch zusätzlich Hadoop herunter (http://www.apache.org/dyn/closer.cgi/hadoop/common/hadoop-2.7.4/hadoop-2.7.4.tar.gz). Setzen Sie anschließend die Umgebungsvariable HADOOP_HOME in ihrer Entwicklungsumgebung (z.B.: Eclipse Run -> Run Configurations .. -> Environment).
 
 ## Ziel
 Wir führen verschiedene Berechnungen und Analysen mit Apache Spark durch:
