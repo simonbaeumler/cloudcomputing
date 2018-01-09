@@ -23,11 +23,73 @@ Ziel ist es den Zwitscher Microservice in die Consul- und Fabio-Infrastruktur zu
  3. Die Consul Web-UI aufrufen: http://localhost:8500/ui. Consul muss hier selbst als Service erfolgreich registriert sein.
  4. Über die REST API von Consul prüfen, ob der Service "consul" läuft: http://localhost:8500/v1/catalog/services.
 
+### Spring Cloud Microservice anpassen
+
+Ziel dieser Aufgabe ist es, die Microservice aus Übung 1 so zu erweitern, dass sich dieser
+
+* beim Start bei der Consul Service Discovery anmeldet,
+* beim Start seine Konfigurationswerte bei Consul abholt,
+* die Service-Schnittstellen (nicht die Admin Schnittstellen) über Traefik aufgerufen werden können
+
+(Hinweis: Falls der Microservice aus Übung 1 bei ihnen nicht oder nicht mehr läuft, benutzen sie bitte die Lösung aus Übung 1)
+
+Die folgenden Dependencies müssen der `pom.xml` hinzugefügt werden:
+
+```xml
+<!-- required for Consol discovery and configuration -->
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-consul-config</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-consul-discovery</artifactId>
+</dependency>
+```
+
+Danach muss unter `src/main/resources` die Datei `bootstrap.properties` angelegt werden:
+
+```
+spring.application.name=book-service
+
+# specify Consul host and port
+# we use the CONSUL_HOST and CONSUL_PORT env variables
+# later set in docker compose as well as Kubernetes
+spring.cloud.consul.host=${consul.host:consul}
+spring.cloud.consul.port=${consul.port:8500}
+
+spring.cloud.consul.config.enabled=true
+spring.cloud.consul.config.prefix=configuration
+spring.cloud.consul.config.default-context=application
+
+# do not fail at startup if Consul is not there
+spring.cloud.consul.config.fail-fast=false
+
+# store properties as blob in property syntax
+# e.g. configuration/book-service/data
+spring.cloud.consul.config.format=properties
+spring.cloud.consul.config.data-key=data
+```
+
+In der `application.properties` müssen zudem folgende Properties angelegt werden, um die Service-Registrierung
+in Consul und die Tags für Traefik korrekt zu konfigurieren:
+
+```
+# assign a unique instance ID
+spring.cloud.consul.discovery.instance-id=${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+# required by Docker compose and Consul to run the health check
+# register IP address and heartbeats
+spring.cloud.consul.discovery.prefer-ip-address=true
+spring.cloud.consul.discovery.heartbeat.enabled=true
+
+spring.cloud.consul.discovery.tags=traefik.enable=true,traefik.frontend.rule=PathPrefixStrip:/book-service,traefik.tags=api,traefik.frontend.entrypoint=http
+```
+
 ### Den Microservice bei Consul registrieren (Service Discovery)
- 1. Den Zwischer Service so modifizieren, dass der Service an Consul registriert wird (siehe entsprechenden TODO-Kommentar).
- Hierfür wird die Orbiz Java-API für Consul genutzt (https://github.com/OrbitzWorldwide/consul-client). Beantworten sie dabei auch die Fragen, die im Quellcode gestellt werden.
+ 1. don im vorherigen Schritt angepassten Microservice starten
  2. In Consul prüfen, ob der Zwitscher-Service registriert ist. Per UI (http://localhost:8500/ui) oder per REST API (http://localhost:8500/v1/catalog/service/zwitscher).
- 3. Den Zwitscher-Service direkt aufrufen: http://localhost:2890/messages.
+ 3. Den Zwitscher-Service direkt aufrufen: http://localhost:18080/api/books.
  4. In Consul den Health-Status des Zwitscher-Service prüfen. Sollte grün sein.
  5. 3 weitere Service-Instanzen starten und in Consul nachvollziehen, dass sie dort registriert und gesund sind.
 
@@ -42,7 +104,7 @@ Ziel ist es den Zwitscher Microservice in die Consul- und Fabio-Infrastruktur zu
    die Verteilung der Requests nachvollziehen. Fabio auf random-Verteilung umstellen und die Request-Verteilung dann
    nachvollziehen.
 
-## Aufgabenblock 2: Microservice Stack in auf ein Kubernetes Cluster deployen
+## Aufgabenblock 2 (Kür): Microservice Stack in auf ein Kubernetes Cluster deployen
 
 ### Vorbereitung
  1. Laden sie minikube herunter (https://github.com/kubernetes/minikube/releases) und legen sie die Datei im Wurzelverzeichnis der Übung ab. Über minikube kann ein lokales Kubernetes Cluster erzeugt und verwaltet werden. Nennen sie die heruntergeladene Datei in _minikube_ / _minikube.exe_ um.
@@ -69,7 +131,7 @@ Ziel ist es den Zwitscher Microservice in die Consul- und Fabio-Infrastruktur zu
    * `kubectl create -f ./src/infrastructure/k8s/consul-rc.yaml`
  * Greifen sie auf die Consul Web-UI zu. Dazu müssen sie zunächst per `minikube ip` die IP des Kubernetes Cluster ermitteln. Der Zugriff auf die Consul Web-UI erfolgt dann über die URL: http://MINIKUBE-IP:30850/ui
  
-### Microservice mit Consul verbinden (Bonusaufgabe)
+### Microservice mit Consul verbinden 
  1. Modifizieren sie den Microservice so, dass er sich mit dem Consul Service innerhalb von Kubernetes verbindet. Wie ein Service-Endpunkt innerhalb von Kubernetes ermittelt werden kann ist hier beschrieben: http://kubernetes.io/docs/user-guide/services.
  * Sie müssen dabei auch die IP des Microservice Pods ermitteln. Welche Möglichkeiten es hierfür gibt, sind z.B. hier beschrieben:
     * http://stackoverflow.com/questions/30746888/how-to-know-a-pods-own-ip-address-from-a-container-in-the-pod
@@ -78,12 +140,8 @@ Ziel ist es den Zwitscher Microservice in die Consul- und Fabio-Infrastruktur zu
  * Erstellen sie einen Kubernetes Service- und RC-Deskriptor für den Microservice und deployen sie beides in den Kubernetes Cluster
  * Prüfen sie im Anschluss per Dashboard und Consul UI, ob der Microservice läuft und bei Consul registriert ist
  
-### Fabio vor Consul schalten (Bonusaufgabe)
+### Fabio vor Consul schalten
   1. Erstellen sie einen Service- und RC-Deskriptor für fabio. 
     * Ein Docker Image für fabio ist hier zu finden: https://hub.docker.com/r/magiconair/fabio. 
     * Wie die Verbindung zwischen fabio und Consul per Kommandozeilen-Parameter aufgebaut werden kann ist hier zu finden: https://github.com/eBay/fabio/wiki/Configuration
   * Deployen sie den fabio Service und RC und prüfen sie, ob sie die fabio UI und den fabio Endpunkt erreichen können.
-
-Bei Interesse finden sie auch eine etwas umfangreichere Version von Zwitscher auf github (https://github.com/qaware/cloud-native-zwitscher),
-die auf Spring Cloud (Microservice Container, Integrationen in Infrastruktur, Configuration & Coordination)
-und dem Netflix OSS Stack (Edge Server, Service Connector, Monitoring Service) basiert. Diese läuft sowohl mit Docker Compose, Kubernetes als auch Marathon als Cluster Orchestrierer.
