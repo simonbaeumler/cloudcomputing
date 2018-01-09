@@ -1,4 +1,4 @@
-# Übung: Cloud-native Anwendung mit Dropwizard, Consul und Fabio
+# Übung: Cloud-native Anwendung mit Spring-Boot, Consul und Fabio
 
 In einer vorhergehenden Übung wurde bereits der Microservice _Zwitscher_ auf Basis von Dropwizard
 (http://www.dropwizard.io) umgesetzt. Nun soll dieser Microservice um die notwendige Cloud-Infrastruktur
@@ -6,7 +6,7 @@ ergänzt werden. Dies ist Consul (https://www.consul.io) für Configuration & Co
 und Fabio (https://github.com/eBay/fabio) als Edge Server.
 
 ## Ziel
-Ziel ist es den Zwitscher Microservice in die Consul- und Fabio-Infrastruktur zu integrieren und dann auf einem Kubernetes Cluster zum Laufen zu bringen.
+Ziel ist es den Bookshelf Microservice aus Übung 1 in die Consul- und Fabio-Infrastruktur zu integrieren.
 
 ## Aufgabenblock 1: Microservice Stack lokal ausführen
 
@@ -87,7 +87,7 @@ spring.cloud.consul.discovery.tags=traefik.enable=true,traefik.frontend.rule=Pat
 ```
 
 ### Den Microservice bei Consul registrieren (Service Discovery)
- 1. don im vorherigen Schritt angepassten Microservice starten
+ 1. Den im vorherigen Schritt angepassten Microservice starten
  2. In Consul prüfen, ob der Service registriert ist. Per UI (http://localhost:8500/ui) oder per REST API (http://localhost:8500/v1/catalog/service/book-service).
  3. Den Service direkt aufrufen: http://localhost:8080/api/books/0345391802
  4. In Consul den Health-Status des Service prüfen. Sollte grün sein.
