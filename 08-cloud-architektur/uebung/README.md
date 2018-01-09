@@ -99,10 +99,14 @@ spring.cloud.consul.discovery.tags=traefik.enable=true,traefik.frontend.rule=Pat
  3. In Consul prüfen, ob fabio als Service registriert und gesund ist.
  4. Auf die Fabio Web-UI zugreifen: http://localhost:9998 und die dort definierten Routen analysieren.
  Was bedeutet "Weight" bei einer Route?
- 5. Den Bookshelf Service über fabio aufrufen: http://localhost:9999/messages. In den Logs der Service-Instanzen
+ 5. Den Bookshelf Service über fabio aufrufen: http://localhost:9999/api/books/. In den Logs der Service-Instanzen
    die Verteilung der Requests nachvollziehen. Fabio auf random-Verteilung umstellen und die Request-Verteilung dann
    nachvollziehen.
 
+Hinweis: Alternativ zu Fabio kann Traefik verwendet werden. Dieser funktioniert auch unter Windows: https://traefik.io/
+Als Konfigurationsdatei kann die datei traefik.toml aus der Lösung verwendet werden.
+ 
+   
 ## Aufgabenblock 2 (Kür): Microservice Stack in auf ein Kubernetes Cluster deployen
 
 ### Vorbereitung
