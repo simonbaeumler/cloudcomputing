@@ -55,7 +55,7 @@ spring.application.name=book-service
 # specify Consul host and port
 # we use the CONSUL_HOST and CONSUL_PORT env variables
 # later set in docker compose as well as Kubernetes
-spring.cloud.consul.host=${consul.host:consul}
+spring.cloud.consul.host=${consul.host:127.0.0.1}
 spring.cloud.consul.port=${consul.port:8500}
 
 spring.cloud.consul.config.enabled=true
@@ -88,10 +88,10 @@ spring.cloud.consul.discovery.tags=traefik.enable=true,traefik.frontend.rule=Pat
 
 ### Den Microservice bei Consul registrieren (Service Discovery)
  1. don im vorherigen Schritt angepassten Microservice starten
- 2. In Consul prüfen, ob der Zwitscher-Service registriert ist. Per UI (http://localhost:8500/ui) oder per REST API (http://localhost:8500/v1/catalog/service/zwitscher).
- 3. Den Zwitscher-Service direkt aufrufen: http://localhost:18080/api/books.
- 4. In Consul den Health-Status des Zwitscher-Service prüfen. Sollte grün sein.
- 5. 3 weitere Service-Instanzen starten und in Consul nachvollziehen, dass sie dort registriert und gesund sind.
+ 2. In Consul prüfen, ob der Service registriert ist. Per UI (http://localhost:8500/ui) oder per REST API (http://localhost:8500/v1/catalog/service/book-service).
+ 3. Den Service direkt aufrufen: http://localhost:8080/api/books/0345391802
+ 4. In Consul den Health-Status des Service prüfen. Sollte grün sein.
+ 5. 3 weitere Service-Instanzen starten und in Consul nachvollziehen, dass sie dort registriert und gesund sind. Achtung: Diese müssen über den Konfigurationswert 'server.port' einen anderen Port zugewiesen bekommen.
 
 ### Fabio konfigurieren und starten (Edge Server)
  1. In der Konfigurationsdatei die Proxy-Adresse und die lokale IP auf `localhost` bzw. `127.0.0.1` setzen
@@ -100,7 +100,7 @@ spring.cloud.consul.discovery.tags=traefik.enable=true,traefik.frontend.rule=Pat
  3. In Consul prüfen, ob fabio als Service registriert und gesund ist.
  4. Auf die Fabio Web-UI zugreifen: http://localhost:9998 und die dort definierten Routen analysieren.
  Was bedeutet "Weight" bei einer Route?
- 5. Den Zwitscher Service über fabio aufrufen: http://localhost:9999/messages. In den Logs der Service-Instanzen
+ 5. Den Bookshelf Service über fabio aufrufen: http://localhost:9999/messages. In den Logs der Service-Instanzen
    die Verteilung der Requests nachvollziehen. Fabio auf random-Verteilung umstellen und die Request-Verteilung dann
    nachvollziehen.
 
