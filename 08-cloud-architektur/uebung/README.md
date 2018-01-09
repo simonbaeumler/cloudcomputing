@@ -1,7 +1,6 @@
 # Übung: Cloud-native Anwendung mit Spring-Boot, Consul und Fabio
 
-In einer vorhergehenden Übung wurde bereits der Microservice _Zwitscher_ auf Basis von Dropwizard
-(http://www.dropwizard.io) umgesetzt. Nun soll dieser Microservice um die notwendige Cloud-Infrastruktur
+In dieser Übung soll der Microservice aus Übung 1 um die notwendige Cloud-Infrastruktur
 ergänzt werden. Dies ist Consul (https://www.consul.io) für Configuration & Coordination sowie Service Discovery
 und Fabio (https://github.com/eBay/fabio) als Edge Server.
 
