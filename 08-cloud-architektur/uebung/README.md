@@ -104,8 +104,11 @@ spring.cloud.consul.discovery.tags=traefik.enable=true,traefik.frontend.rule=Pat
    nachvollziehen.
 
 Hinweis: Alternativ zu Fabio kann Traefik verwendet werden. Dieser funktioniert auch unter Windows: https://traefik.io/
-Als Konfigurationsdatei kann die datei traefik.toml aus der Lösung verwendet werden.
- 
+Als Konfigurationsdatei kann die datei traefik.toml aus der Lösung verwendet werden. Dieser wird mit 
+```
+./traefik_windows-amd64.exe --configFile=traefik.toml
+```
+gestartet 
    
 ## Aufgabenblock 2 (Kür): Microservice Stack in auf ein Kubernetes Cluster deployen
 
