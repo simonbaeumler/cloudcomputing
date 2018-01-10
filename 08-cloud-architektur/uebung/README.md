@@ -108,7 +108,8 @@ Als Konfigurationsdatei kann die datei traefik.toml aus der Lösung verwendet we
 ```
 ./traefik_windows-amd64.exe --configFile=traefik.toml
 ```
-gestartet 
+gestartet. Auf http://localhost:8090/dashboard/ kann das Traefik Dashboard eingesehen werden. Der Bookshelf Service kann über Traefik durch die 
+URL http://localhost/book-service/api/books/ angesprochen werden. 
    
 ## Aufgabenblock 2 (Kür): Microservice Stack in auf ein Kubernetes Cluster deployen
 
