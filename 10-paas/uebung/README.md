@@ -28,7 +28,7 @@ Wechseln sie nun in das Verzeichnis der Beispielapplikation und lassen sie sich 
  * Ferner wird innerhalb der flynn PaaS eine Route auf die Applikation erzeugen. Lassen sie sich die Route per `flynn route` anzeigen.
 
 3. Übertragen die Beispielapplikation und analysieren sie die Log-Ausgabe, was dabei innerhalb der PaaS passiert. 
-Führen sie dazu den Befehl: `git -c http.sslVerify=false push flynn master` aus.
+Dazu pushen sie das Repository auf das Remote flynn: `git push flynn master`
 Wechseln sie in die Web-UI von flynn und lassen sie sich die Applikationsseite anzeigen. Rufen sie die Anwendung aus der Web-UI heraus auf.
 
 4. Inspizieren sie den aktuellen Zustand der PaaS Cloud. Dabei helfen ihnen die folgenden Kommandos. Die Dokumentation der Kommandos finden sie hier: https://flynn.io/docs/cli.
