@@ -4,7 +4,7 @@ Autor: Simon Bäumler
 
 Aktuelle Vorlesung: Hochschule Bingen, Wintersemester 2017/2018
 
-Inhalte:
+### Inhalte:
 
 1. [Einführung](00-einfuehrung)
 2. [Kommunikationsprotokolle in der Cloud](01-kommunikation)
@@ -30,7 +30,8 @@ Für die Übungen notwendige Software:
 * Minikube (https://github.com/kubernetes/minikube/releases)
 * Minishift (https://github.com/minishift/minishift/releases)
 
-Aktuelles:
+### Aktuelles:
+
 Die Prüfung findet am 27.2.2018 um 09:55 Uhr in Raum 1-315 statt.
 
 
